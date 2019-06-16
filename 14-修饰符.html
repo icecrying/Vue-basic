@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--1   .number 把默认为字符串类型的数字转化为number-->
+    <input type="text" v-model.number="message1"  value="0">
+    <input type="text" v-model.number="message2"  value="0">
+    {{message1+message2}}
+    <button @click="fn">点击</button>
+    <!--2   .trim 去除首尾的空格-->
+    <input type="text" v-model.trim="message3">
+</div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+let vm = new Vue({
+    el:"#app",
+    data:{
+        message1:"",
+        message2:"",
+        message3:""
+    },
+    methods:{
+        fn(){
+            console.log(typeof this.message1)
+            console.log(this.message3.length)
+        }
+    }
+})
+
+
+</script>
+</html>

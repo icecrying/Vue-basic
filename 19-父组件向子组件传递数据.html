@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="title">
+        <p>输入的值为：{{title}}</p>
+        <dialog-component :retitle="title"></dialog-component>
+    </div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('dialog-component',{
+        //模板
+        template:'<div :style="styles"><div :style="titles">{{retitle}}</div></div>',
+        //计算属性
+        computed:{
+            styles(){
+                return{
+                    width: '300px',
+                    height: '300px',
+                    border: '1px solid black'
+                }
+            },
+            titles(){
+                return{
+                    backgroundColor: 'green',
+                    textAlign: 'center',
+                    height: '30px',
+                    lineHeight: '30px',
+                    color: 'white'
+                }
+            }
+        },
+        //这里props是自定义一个属性retitle，通过v-bind用来绑定属性，使之和Vue连接起来
+        props:['retitle']
+    });
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            title:"注册"
+        }
+    })
+</script>
+</html>

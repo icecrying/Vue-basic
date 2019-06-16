@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .box2{
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--1.绑定单个class-->
+    <div :class="obox1"></div>
+    <!--2.绑定多个class-->
+    <div :class="[obox1,obox2]"></div>
+    <!--3.可以根据值来确定是否显示某个样式-->
+    <button @click="fn">点击</button>
+    <div :class="[obox1,{box2:isActive}]"></div>
+    <hr>
+    <div :class="{box1: isActive}">box1</div>
+    <!--注意：格式（{类名称：布尔值}）-->
+</div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+let vm = new Vue({
+    el:"#app",
+    data:{
+        obox1:"box1",
+        obox2:"box2",
+        isActive:true
+    },
+    methods:{
+        fn(){
+            this.isActive = !this.isActive
+        }
+    }
+})
+</script>
+</html>

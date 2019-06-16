@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--本节知识点：
+    1 .enter  回车键
+    2 .tab   tab键盘
+    3 .delete (捕获“删除”和“退格”键)
+    4 .esc   esc键
+    5 .space 空格
+    6 .up
+    7 .down
+    8 .left
+    9 .right-->
+<div id="box">
+    <!--<input type="text" v-on:keyup.enter="fn()">-->
+    <p @mousedown.right="fn()">down</p>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vue = new Vue({
+        el:"#box",
+        data:{
+            message:"按下键盘enter键"
+        },
+        methods:{
+            fn(){
+                alert(this.message)
+            }
+        }
+    })
+</script>
+</body>
+</html>

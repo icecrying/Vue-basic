@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button-component v-on:myevent = "say"></button-component>
+</div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    //1 父组件可以使用 props 把数据传给子组件。
+    //2 子组件可以使用 $emit 触发父组件的自定义事件。
+    Vue.component('button-component',{
+        //使用$emit配合@click事件创建一个自定义的新事件myevent，还支持传入参数，例如：'world!'
+        template:`<button @click="$emit('myevent','world!')">点击</button>`
+    })
+    let vm = new Vue({
+        el:"#app",
+        methods:{
+            say(name){
+                alert("hello "+name)
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <button v-on:click="fn">点击</button>
+    <ul>
+        <li v-for="(value,key) in obj">{{key}}:{{ value }}</li>
+    </ul>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:"#box",
+        data:{
+            obj:{
+                id:1,
+                name:"zhangsan",
+                age: 13
+            }
+        },
+        methods:{
+            fn(){
+                //$set表示添加属性 $delete 表示删除属性  vm.$delete(this.obj,'id')
+                vm.$set(this.obj,"sex","man")
+                vm.$delete(this.obj,"id")
+            }
+        }
+    })
+</script>
+</body>
+</html>

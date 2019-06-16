@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box1{
+            width: 300px;
+            height: 300px;
+            background-color: greenyellow;
+            overflow: hidden;
+        }
+        #box2{
+            width: 200px;
+            height: 200px;
+            margin: 50px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<!--事件冒泡：从内向外触发；事件捕获：从外向内触发-->
+<!--本节知识点：
+    1、.capture:事件捕获；
+    2、.self：事件源是自身的时候触发
+    3、.once：事件只触发一次
+    -->
+<div id="box">
+    <div id="box1" v-on:click.capture="box1()">
+        <!--在这里使用.stop修饰符,阻止事件冒泡-->
+        <div id="box2" v-on:click="box2()"></div>
+    </div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vue = new Vue({
+        el:"#box",
+        data:{
+            message1:"hello",
+            message2:"world!"
+        },
+        methods:{
+            box1(){
+                alert(this.message1)
+            },
+            box2(){
+                alert(this.message2)
+            }
+        }
+    })
+</script>
+</body>
+</html>

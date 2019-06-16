@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box1{
+            width: 300px;
+            height: 300px;
+            background-color: greenyellow;
+            overflow: hidden;
+        }
+        #box2{
+            width: 200px;
+            height: 200px;
+            margin: 50px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<!--本节知识点：
+    1、.stop修饰符,阻止事件冒泡
+    2、.prevent 阻止浏览器默认行为-->
+
+<div id="box">
+    <div id="box1" v-on:click="box1()">
+        <!--在这里使用.stop修饰符,阻止事件冒泡-->
+        <div id="box2" v-on:click.stop="box2()"></div>
+    </div>
+    <!--点击a连接会自动跳转到a连接的网址，这浏览器的默认行为，如果需要阻止，使用.prevent 阻止默认行为-->
+    <a href="http://www.baidu.com" v-on:click.prevent>百度一下，你就知道</a>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    //什么是事件修饰符？     事件修饰符是帮助我们去处理事件相关细节的，例如，防止事件冒泡、阻止系统默认行为等
+    //在之前，使用event.stopPropagation()、event.preventDefault()去实现，而在vue中可以使用.stop等方式就可以解决
+
+    //下面这段函数，点击#box2根据事件冒泡，先会弹出“你好”然后弹出“hello world!”。如果要阻止事件冒泡，可以在上面HTML节点处使用stop
+    let vm = new Vue({
+        el:"#box",
+        data:{
+            message:"hello world!",
+            cont:"你好！"
+        },
+        methods:{
+            box1(){
+                alert(this.message)
+            },
+            box2(){
+                alert(this.cont)
+            }
+        }
+    })
+</script>
+</body>
+</html>

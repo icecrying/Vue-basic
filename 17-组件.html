@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <btn-com></btn-com>
+    <button-component></button-component>
+    <br>
+    <button-component></button-component>
+    <br>
+    <button-component></button-component>
+    <br>
+    <button-component></button-component>
+</div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('btn-com',{
+        template:`<ul><li v-for="item in this.newsdata">{{item.title}}</li></ul>`,
+        //data必须是一个函数
+        data(){
+            return{
+                arr:["张三","李四","王五"],
+                newsdata:[
+                    {'title': '国家药监局：武汉生物百白破疫苗不合格属偶发'},
+                    {'title': '下月起 这部分人群的抚恤补助标准将再次提高'},
+                    {'title': '85岁老人40万买保健品 身无分文流落街头称继续买'}
+                ]
+            }
+        }
+    });
+    Vue.component("button-component",{
+        //模板
+        template:'<button @click = "fn">点击{{num}}次</button>',
+        data(){
+            return{
+                num : 0
+            }
+        },
+        methods:{
+            fn(){
+                this.num++
+            }
+        }
+    });
+let vm = new Vue({
+    el:"#box",
+    data:{
+
+    }
+})
+</script>
+</html>

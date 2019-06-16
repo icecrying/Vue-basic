@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="inputValue" placeholder="请输入">
+    <button @click="add">增加</button>
+    <!--循环写在html和写在Vue组件模板里均可-->
+    <!--循环写在html里：先循环出Vue的数组todos，拿到值item ，利用props传递给Vue组件，绑定的属性todo就是拿到的值-->
+    <!--<ul>
+        <list-component v-for="(item,index) in todos" :key="index" :todo="item"></list-component>
+    </ul>-->
+    <!--循环写在Vue组件模板里：利用props拿到Vue里面的todos，再在组件模板中循环-->
+    <list-component :todo="todos"></list-component>
+</div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('list-component',{
+        // template:`<li>{{todo}}</li>`,
+        template:`<ul><li v-for="(item,index) in todo" :key="index">{{item}}</li></ul>`,
+        props:['todo']
+    });
+let vm = new Vue({
+    el:"#app",
+    data:{
+        inputValue:null,
+        todos:["张三","李四","王五"]
+    },
+    methods:{
+        add(){
+            if (this.inputValue !== null) {
+                this.todos.push(this.inputValue);
+                this.inputValue = null;
+            }
+
+        }
+    }
+})
+</script>
+</html>

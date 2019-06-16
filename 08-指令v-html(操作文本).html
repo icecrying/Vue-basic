@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <!--本节内容：
+        v-html：会解析文本；
+        v-text：不会解析文本-->
+    <p v-html="message"></p>
+    <p v-text="message"></p>
+    <p>{{message}}</p>
+    <!--<p v-text="message"></p>    和   <p>{{message}}</p>  两者的区别：
+        当vue没有被创建出来的时候，前者不会被解析显示，后者会先当做文本被显示出来。-->
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    setTimeout(function () {
+        let vue = new Vue({
+            el:"#box",
+            data:{
+                message:"<h1>hello world!</h1>"
+            }
+        })
+    },2000);
+
+</script>
+</body>
+</html>

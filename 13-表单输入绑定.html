@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--当v-model和value同时有值时，显示的是v-model的值-->
+    <input type="text" v-model="message" value="男">
+    <br>
+    <!--单选框：当选择后，变量的值被改变成对应value里面的值了-->
+    man:<input type="radio" v-model="sex" value="男">
+    woman:<input type="radio" v-model="sex" value="女">
+    <p>{{sex}}</p>
+    <br>
+    <!--复选框-->
+    <input type="checkbox" v-model="name" value="张三">张三
+    <input type="checkbox" v-model="name" value="李四">李四
+    <input type="checkbox" v-model="name" value="王五">王五
+    {{name}}
+    <br>
+    <!--选择框-->
+    <select name="" id="" v-model="selected">
+        <option value="" disabled>请选择</option>
+        <option value="beijing" selected = "selected">北京</option>
+        <option value="shanghai">上海</option>
+        <option value="guangzhou">广州</option>
+        <option value="shenzhen">深圳</option>
+    </select>
+    <p>{{selected}}</p>
+</div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+let vm = new Vue({
+    el:"#app",
+    data:{
+        message:"man",
+        sex:"男",
+        name:["您已选中了："],
+        selected:"北京"
+    }
+})
+</script>
+</html>

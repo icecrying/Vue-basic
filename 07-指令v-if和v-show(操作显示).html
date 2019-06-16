@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <button v-on:click="fn">点击</button>
+    <p v-if="flag">v-if:hello!</p>
+    <p v-show="flag">v-show:hello!</p>
+    <!--两者的区别：v-show可以根据表达式的值切换css的display属性，决定内容是否显示，内容始终都会被创建出来的
+                    if条件渲染是会销毁内容的-->
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:"#box",
+        data:{
+            flag:false
+        },
+        methods:{
+            fn(){
+                this.flag = !this.flag
+            }
+        }
+    })
+</script>
+</body>
+</html>

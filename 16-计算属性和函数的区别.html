@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button @click="fn1">计算属性</button>
+    <p v-if="isShow">{{computedMessage}}</p>
+    <br><br>
+    <button @click="fn2">方法</button>
+    <p v-if="isFnShow">{{fnMessage()}}</p>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            isShow: false,
+            isFnShow: true
+        },
+        methods: {
+            fnMessage() {
+                let date = new Date();
+                return date.getMilliseconds()
+            },
+            fn1(){
+                this.isShow = !this.isShow
+            },
+            fn2() {
+                this.isFnShow = !this.isFnShow
+            }
+        },
+        computed: {
+            computedMessage() {
+                let date = new Date();
+                return date.getMilliseconds()
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

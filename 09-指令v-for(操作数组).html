@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <button v-on:click="fn">点击</button>
+    <ul>
+        <li v-for="(item,index) in arr">下标：{{index}}，值：{{item}}</li>
+<!--        <li v-for="(value,key) in obj">{{key}}:{{ value }}</li>-->
+<!--        <li v-for="i in 10">{{i}}</li>-->
+    </ul>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vue = new Vue({
+        el:"#box",
+        data:{
+            arr:[1,2,12,3,4,5],
+            obj:{
+                name:"zhangsan",
+                age:23
+            }
+        },
+        methods:{
+            fn(){
+            //    变异方法：会改变原来的数组
+            //    1.push()        向数组的最后一个位置添加一个元素
+            //     this.arr.push(23);
+            //    2.unshift()     向数组的第一个位置添加元素
+            //     this.arr.unshift(123)
+            //    3.shift()       删除数组第一个位置的元素
+            //     this.arr.shift()
+            //    4.pop()         删除数组最后一个位置的元素
+            //     this.arr.pop()
+            //    5.splice()      添加或者删除元素；（第一个参数表示从数组下标为几的位置包括自己开始删除，
+                                                // 第二个参数表示删除的个数，第三个参之后的参数表示要添加的内容）
+            //     this.arr.splice(1,2)
+            //    6.reverse()     反转数组
+            //     this.arr.reverse()
+            //    7.sort()        给数组排序:括号内需要传入排序规则的函数，不传则默认按照字符编码进行排序
+            //    升序
+            //     this.arr.sort( (a, b) => {return a > b})
+            //    降序
+                this.arr.sort( (a, b) => {return a < b})
+
+            //    非变异方法：不会改变原来的数组，如concat。如果需要改变，可以把新数组赋值给原来的数组
+            //     this.arr = this.arr.concat([9,8,7,6,5])
+            }
+        }
+    })
+</script>
+</body>
+</html>

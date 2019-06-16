@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <!--1.v-on用来添加事件,简写形式 @click = "fn" -->
+    <button @click="fn">点击增加数值</button><br>
+
+    <!--2.v-bind用来绑定属性（如绑定href属性），它也有简写的形式 :href = ""-->
+<!--    <a v-bind:href="'http://www.baidu.com'">百度一下</a><br>
+    <a :href="'http://www.baidu.com'">百度一下</a><br>-->
+    <a :href="website" target="_blank">打开网页</a><br>
+
+    <!--3.v-model 可以在表单控件或者组件上创建双向绑定    例如：下面的这个val同样可以应用到p元素中-->
+    <input type="text" v-model="val1" placeholder="你好！">
+    <p>您输入的内容是：{{val1}}</p>
+    <input type="text" v-model="val">
+    <!--4.v-cloak和v-text，当Vue实例还未被创建，又不想被用户看到未被解析的内容时，使用v-cloak和v-text-->
+    <p v-cloak>这个在vue编译之前看不到：{{val}}</p>      <!--v-cloak需要配合css使用-->
+    编译之前是val：<p v-text="val" style="display: inline-block"></p>        <!--一般在需要隐藏的东西较多时使用 v-cloak-->
+
+    <!--5.v-pre 跳过这个元素和它的子元素的编译过程。例如我不想上面的p元素中的{{val}}被浏览器解析-->
+    <p v-pre>这个不会被编译{{val}}</p>
+
+    <!--6.v-once只渲染元素和组件一次-->
+    <button @click="changeFn">改变网址</button>
+    <br>
+    <!--上面的链接打开网页变成了京东，这里打开的网址仍然是百度，是因为v-once使这个链接只会被渲染一次，之前已经渲染成百度了，所以不会改变了-->
+    <a :href="website" v-once target="_blank">这里的链接仍是百度</a>
+</div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    setTimeout(function () {
+        let vm = new Vue({
+            el:"#box",
+            data:{
+                website:"http://www.baidu.com",
+                val:123,
+                val1:""
+            },
+            methods:{
+                fn(){
+                    this.val++
+                },
+                changeFn(){
+                    this.$data.website = "http://www.jd.com"
+                }
+            }
+        })
+    },3000)
+
+</script>
+</html>

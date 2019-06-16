@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <news-component :news-data="newsdata" :news-type="newstype"></news-component>
+    </div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('news-component',{
+       template:`<div :style="wrap">
+                    <div :style="wrapTitle">{{newsType}}</div>
+                    <div :style="wrapBody">
+                        <news-list :data="newsData"></news-list>
+                    </div>
+                 </div>`,
+       computed:{
+           wrap(){
+               return{
+                   width: '400px',
+                   height: '400px',
+                   border: '1px solid black'
+               }
+           },
+           wrapTitle(){
+               return{
+                   padding: '15px',
+                   width: '100%',
+                   borderBottom: '1px solid black',
+                   boxSizing: 'border-box'
+               }
+           },
+           wrapBody(){
+               return{
+                   padding: '10px'
+               }
+           }
+       },
+        props:['newsType','newsData']
+    });
+    Vue.component('news-list',{
+        template:`<ul>
+                    <li v-for="item in data">{{item.title}}</li>
+                  </ul>`,
+        props:['data']
+    });
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            newstype:"国内新闻",
+            newsdata:[
+                {'title': '国家药监局：武汉生物百白破疫苗不合格属偶发'},
+                {'title': '下月起 这部分人群的抚恤补助标准将再次提高'},
+                {'title': '85岁老人40万买保健品 身无分文流落街头称继续买'}
+            ]
+        }
+    })
+</script>
+</html>

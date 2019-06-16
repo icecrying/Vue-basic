@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--事件绑定：
+        v-on：事件名 = “事件处理函数名（可传参）”
+    -->
+    <button v-on:click="say()">{{message}}</button>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            message:"hello world!"
+        },
+        //方法函数放在methods里面
+        methods:{
+            say(){
+                alert(this.message)
+            }
+        }
+    })
+</script>
+</body>
+</html>

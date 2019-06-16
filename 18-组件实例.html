@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <header-component></header-component>
+    <body-component></body-component>
+</div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    // 这是头部区域组件
+    Vue.component('header-component',{
+        template:'<div :style="styles">这里是头部区域</div>',
+        computed:{
+            styles(){
+                return{
+                    height:"100px",
+                    width:"100%",
+                    backgroundColor:"black",
+                    color:"white",
+                    textAlign:"center",
+                    lineHeight:"100px"
+                }
+            }
+        }
+    });
+    //这是主干区域组件
+    Vue.component('body-component',{
+        template:'<div :style="styles">' +
+            '<body-left></body-left>' +
+            '<body-right></body-right>' +
+            '</div>',
+        computed:{
+            styles(){
+                return{
+                    height:"500px",
+                    width:"100%",
+                    backgroundColor:"red",
+                }
+            }
+        }
+    });
+    Vue.component('body-left',{
+        template:'<div :style="styles">这是左边</div>',
+        computed:{
+            styles(){
+                return{
+                    height:"500px",
+                    width:"30%",
+                    backgroundColor:"yellow",
+                    float: "left",
+                    textAlign:"center"
+                }
+            }
+        }
+    });
+    Vue.component('body-right',{
+        template:'<div :style="styles">这是右边</div>',
+        computed:{
+            styles(){
+                return{
+                    height:"500px",
+                    width:"30%",
+                    backgroundColor:"greenyellow",
+                    textAlign:"center",
+                    float: "right"
+                }
+            }
+        }
+    });
+    let vm = new Vue({
+        el:"#app"
+    })
+</script>
+</html>

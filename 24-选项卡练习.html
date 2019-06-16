@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #tab div{
+            /*display: block;*/
+            display: none;
+            padding: 10px;
+            border: 1px solid black;
+            width: 428px;
+        }
+        #tab div.active{
+            display: block;
+        }
+        #tab button.active{
+            background-color: orange;
+        }
+        #tab button{
+            width: 150px;
+            height: 50px;
+        }
+        #tab ul{
+            padding: 0;
+        }
+        #tab li{
+            list-style: none;
+            height: 40px;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div id="tab">
+        <button @click="changeIndex(i)" v-for="(item,i) in tabData" :class="{active:index==i}">{{item.tabTitle}}</button>
+        <div :class="{active:index==j}" v-for="(item, j) in tabData">
+            <ul>
+                <li v-for="news in item.list">{{news.newsTitle}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+let vm = new Vue({
+    el:"#app",
+    data:{
+        tabData:[
+            {
+                tabTitle:'财经',
+                list: [
+                    {id:1, newsTitle: '大数据刷新认知：平均每天都有儿童在遭受性侵！'},
+                    {id:2, newsTitle: '董登新：外资没有能力把中国的保险市场全部吃掉'},
+                    {id:3, newsTitle: '收评：沪指大幅回调跌1.80% 钢铁板块领跌两市'},
+                    {id:4, newsTitle: '党报评个税改革：起征点并非越高越好 需统筹平衡'},
+                ]
+            },
+            {
+                tabTitle:'股票',
+                list: [
+                    {id:1, newsTitle: '2.5万股民心凉!200多亿市值没了 长生被基金0估值'},
+                    {id:2, newsTitle: '美年健康回应深交所6大关切：医师执业确有瑕疵'},
+                    {id:3, newsTitle: '详细解读！中央政治局会议透露出这些重大信息！'},
+                    {id:4, newsTitle: '业绩预增近3倍却瞬间跌停！谁撂倒了这只绩优股？'},
+                ]
+            },
+            {
+                tabTitle:'商业',
+                list: [
+                    {id:1, newsTitle: 'SOHO中国全面竞价租房 潘石屹感慨房子坍塌敲警钟'},
+                    {id:2, newsTitle: 'iPhone吸金 服务创新高 苹果盈利收入两位数大涨\n'},
+                    {id:3, newsTitle: '《西虹市首富》5天破12亿 开心麻花战略转型？'},
+                    {id:4, newsTitle: 'Twitter股价暴跌超20% 美国社交平台陷流量瓶颈'},
+                ]
+            },
+        ],
+        index: 0
+    },
+    methods:{
+        changeIndex(i){
+            this.index = i;
+        }
+    }
+})
+</script>
+</html>
